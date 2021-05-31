@@ -1,15 +1,30 @@
 .App {
-  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+
+  margin-left: 3vw;
+  margin-right: 3vw;
 }
 
-.teams{
-  border: 1px solid black;
+.App *{
+  margin: 0.5vw;
+}
+
+.teams {
+  width: 50%;
+  border: 2px solid blue;
   border-collapse: collapse;
+  text-align: center;
 }
 
 .score-input {
   text-align: center;
   width: 3vw;
+}
+
+.tables {
+  display: inline-flex;
+  gap: 2vw;
 }
 
 /* Removes arrows from number input */
