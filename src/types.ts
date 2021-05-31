@@ -1,7 +1,7 @@
 import {immerable} from "immer";
 
 export class Team {
-    // id: number = 0;
+    id: number = 0;
     place: number = 1;
     name: string = "default";
     played: number = 0;

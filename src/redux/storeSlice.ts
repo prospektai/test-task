@@ -16,6 +16,16 @@ export const storeSlice = createSlice({
             if(state.teams.length > 1){
                 let newMatch = new MatchScore();
 
+                newMatch.firstTeam = {
+                    team: newTeam,
+                    score: 0
+                };
+
+                newMatch.secondTeam = {
+                    team: newTeam,
+                    score: 0
+                };
+
                 state.matches = [...state.matches, newMatch];
             }
         }
