@@ -23,12 +23,11 @@ export const storeSlice = createSlice({
 
             // Add new match only if there's someone to play against
             if (state.teams.length > 1) {
-
                 state.matches = generateMatches(state);
-
-                // Save current state to local storage
-                saveState(state);
             }
+
+            // Save current state to local storage
+            saveState(state);
         },
 
         updatePoints: (state: StateModel, args: any): void => {
@@ -76,7 +75,7 @@ export const storeSlice = createSlice({
             saveState(state);
         },
 
-        deleteState: (state: StateModel) => {
+        deleteState: () => {
             removeState();
             return new StateModel();
         }

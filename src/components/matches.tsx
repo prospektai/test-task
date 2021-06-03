@@ -9,8 +9,8 @@ const MatchComponent = (element: MatchScore) => {
     const store = useStore();
     const state: StateModel = useStore().getState() as StateModel;
 
-    const [firstTeamScore, setFirstTeamScore] = useState(el?.firstTeam?.score ?? 0);
-    const [secondTeamScore, setSecondTeamScore] = useState(el?.secondTeam?.score ?? 0);
+    const [firstTeamScore, setFirstTeamScore] = useState(el?.firstTeam?.score ?? null);
+    const [secondTeamScore, setSecondTeamScore] = useState(el?.secondTeam?.score ?? null);
     const [isSubmitted, setIsSubmitted] = useState(el?.isSubmitted ?? false);
 
     const updateScores = () => {
@@ -55,7 +55,7 @@ const MatchComponent = (element: MatchScore) => {
                 <td> {el.firstTeam?.team?.name} </td>
                 <td> <input className="score-input" type="number" value={firstTeamScore} onInput={
                     (e: any) => setFirstTeamScore(e.target.value as number)
-                } /> </td>
+                } onKeyPress={handleKeyPress} /> </td>
                 <td> <b> : </b> </td>
                 <td> <input className="score-input" type="number" value={secondTeamScore}
                     onInput={
@@ -83,12 +83,12 @@ const MatchComponent = (element: MatchScore) => {
 
 const Matches = () => {
 
-    const matchState: MatchScore[] = useSelector((state: StateModel) => state.matches);
+    const matchState: MatchScore[] = useSelector((state: any) => state.matches);
 
     return (
         <tbody>
             {matchState.map((element: MatchScore) => {
-                return <MatchComponent {...element as MatchScore} />
+                return <MatchComponent {...element} />
             })}
         </tbody>
     );
