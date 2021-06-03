@@ -8,35 +8,33 @@ export class Team {
     win: number = 0;
     draw: number = 0;
     lost: number = 0;
-    points: number = ( this.win * 3 ) + ( this.draw )
+    points: number = 0;
 }
 
 export class MatchScore {
 
-    MatchScore(args: {firstTeam: any, secondTeam: any}){
-        this.firstTeam = args.firstTeam;
-        this.secondTeam = args.secondTeam;
-    }
+    // MatchScore(args: {firstTeam: {team: Team, score: number}, secondTeam: {team: Team, score: number}}){
+    //     this.firstTeam = args.firstTeam;
+    //     this.secondTeam = args.secondTeam;
+    // }
 
-    firstTeam: {
-        team: Team,
+    firstTeam!: {
+        team: Team, 
         score: number
-    } | undefined;
-    secondTeam: {
-        team: Team,
+    };
+
+    secondTeam!: {
+        team: Team, 
         score: number
-    } | undefined;
+    };
+
+    isSubmitted: boolean = false;
 }
 
 export class StateModel {
 
     [immerable] = true;
 
-    StateModel(args: {teams: any, matches: any}){
-        this.teams = args?.teams;
-        this.matches = args?.matches;
-    }
-
-    teams: Array<Team> = [];
-    matches: Array<MatchScore> = [];
+    teams: Team[] = [];
+    matches: MatchScore[] = [];
 }

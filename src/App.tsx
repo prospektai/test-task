@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import './App.css';
+import Matches from './components/matches';
 import store from './redux/store';
 import { addTeam, deleteState } from './redux/storeSlice';
-import { MatchScore, StateModel } from './types';
+import { StateModel, Team } from './types';
 
 function App() {
 
   const [teamName, setTeamName] = useState("");
 
-  const teamsState = useSelector((state: StateModel) => state.teams);
-  const matchState = useSelector((state: StateModel) => state.matches);
+  const teamsState: Team[] = useSelector((state: StateModel) => state.teams);
 
   return (
     <div className="App">
 
       <div className="inputs">
-        <input type="text" placeholder="New team" onInput={(e: any) => { setTeamName(e.target.value) }} />
+        <input type="text" placeholder="New team" onInput={(e: any) => { setTeamName(e.target?.value) }} />
 
         <button onClick={() => {
           store.dispatch(addTeam(teamName));
-          console.log(store.getState());
         }}>Add</button>
 
         <button onClick={() => store.dispatch( deleteState() )} >
@@ -69,21 +68,7 @@ function App() {
         </table>
 
         <table className="matches" cellPadding="10">
-          <tbody>
-            {
-              matchState.map((e: MatchScore) => {
-                return (
-                  <tr>
-                    <td> {e.firstTeam?.team.name} </td>
-                    <td> <input className="score-input" type="number" placeholder="0" /> </td>
-                    <td> <b> : </b> </td>
-                    <td> <input className="score-input" type="number" placeholder="0" /> </td>
-                    <td> {e.secondTeam?.team.name} </td>
-                  </tr>
-                );
-              })
-            }
-          </tbody>
+            <Matches />
         </table>
       </div>
     </div>
